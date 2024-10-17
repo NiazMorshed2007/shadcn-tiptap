@@ -40,7 +40,7 @@ export const HeroSection = ({ starCount: _ }: { starCount: number }) => {
 			animate="visible"
 			className="pt-32 relative pb-20 flex space-y-2 flex-col items-center justify-center"
 		>
-			<div className="absolute left-1/2 -translate-y-1/2 top-1/2 -translate-x-1/2 opacity-50 w-[700px] h-[300px] bg-orange-100 blur-3xl" />
+			<div className="absolute hidden md:block left-1/2 -translate-y-1/2 top-1/2 -translate-x-1/2 opacity-50 w-[700px] h-[300px] bg-orange-100 blur-3xl" />
 			<motion.h1 className="text-5xl font-semibold" variants={childAnimation}>
 				Shadcn Tiptap
 			</motion.h1>
