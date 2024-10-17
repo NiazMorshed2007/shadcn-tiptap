@@ -1,5 +1,6 @@
 import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import ThemeSwitch from "./theme-switch";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 
@@ -27,9 +28,15 @@ export const Header = () => {
 							Follow on twitter
 						</Link>
 					</Button>
-					<Button size={"icon"} variant={"outline"} className="size-8">
-						<GitHubLogoIcon className="size-4" />
+					<Button asChild size={"icon"} variant={"outline"} className="size-8">
+						<Link
+							target="_blank"
+							href={"https://github.com/NiazMorshed2007/shadcn-tiptap"}
+						>
+							<GitHubLogoIcon className="size-4" />
+						</Link>
 					</Button>
+					<ThemeSwitch />
 				</div>
 			</div>
 		</header>

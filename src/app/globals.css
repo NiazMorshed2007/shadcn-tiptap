@@ -124,3 +124,9 @@ h3.tiptap-heading + h2.tiptap-heading {
 .tiptap ol {
   padding: 0 1rem;
 }
+
+.tiptap blockquote {
+    border-left: 3px solid gray;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+}

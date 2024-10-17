@@ -1,6 +1,24 @@
 import CodeBlock from '../../_components/code-block';
+import ComponentCodePreview from '../../_components/component-code-preview';
+import SearchReplacePlayground from "@/components/examples/search-and-replace-playground";
 
 
 # Search & Replace
 
+The Search & Replace extension for TipTap allows to efficiently find and replace specific content within the editor. Key features include search functionality, case sensitivity, sequential navigation & replace option.
+
+## Playground
+
+<ComponentCodePreview
+  component={<SearchReplacePlayground />}
+/>
+
+## Installation code
+
 <CodeBlock filePath='extensions/search-and-replace.tsx' />
+
+
+## Dependencies
+
+- [@tiptap/core](https://www.npmjs.com/package/@tiptap/core)
+- [@tiptap/pm](https://www.npmjs.com/package/@tiptap/pm)

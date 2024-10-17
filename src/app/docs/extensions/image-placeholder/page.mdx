@@ -1,1 +1,26 @@
+import CodeBlock from '../../_components/code-block';
+import ComponentCodePreview from '../../_components/component-code-preview';
+import ImagePlaceholderPlayground from "@/components/examples/image-placeholder-playground";
+
+
 # Image placeholder
+
+A custom extension for image placeholders like Notion. Enabling to embed image with a link or upload.
+
+## Playground
+<ComponentCodePreview
+  component={<ImagePlaceholderPlayground />}
+/>
+
+## Installation code
+<CodeBlock filePath='extensions/image-placeholder.tsx' />
+
+
+## Dependencies
+
+- [@tiptap/react](https://www.npmjs.com/package/@tiptap/react)
+- [react-dropzone](https://react-dropzone.js.org/)
+- [Button](https://ui.shadcn.com/docs/components/button)
+- [Input](https://ui.shadcn.com/docs/components/input)
+- [Popover](https://ui.shadcn.com/docs/components/popover)
+- [Tabs](https://ui.shadcn.com/docs/components/tabs)

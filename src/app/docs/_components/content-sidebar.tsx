@@ -3,7 +3,8 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 type NavigationItem = {
 	name: string;
@@ -31,8 +32,12 @@ const NAVIGATION: NavigationGroup[] = [
 		name: "Extensions",
 		children: [
 			{
-				name: "Searcn & Replace",
+				name: "Search & Replace",
 				href: "/docs/extensions/search-and-replace",
+			},
+			{
+				name: "Image (Extended)",
+				href: "/docs/extensions/image",
 			},
 			{
 				name: "Image placeholder",
@@ -93,5 +98,39 @@ export function NavigationDesktop() {
 				</nav>
 			</ScrollArea>
 		</aside>
+	);
+}
+
+export function NavigationMobile() {
+	const router = useRouter();
+	const pathname = usePathname();
+	const [selectedHref, setSelectedHref] = useState(pathname);
+
+	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const href = e.target.value;
+		setSelectedHref(href);
+		router.push(href);
+	};
+
+	return (
+		<div className="block w-full px-6 pt-8 md:hidden">
+			<select
+				className="block w-full appearance-none rounded-lg border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white"
+				value={selectedHref}
+				onChange={handleChange}
+			>
+				{NAVIGATION.map((item) => {
+					return (
+						<optgroup label={item.name} key={item.name}>
+							{item.children.map((child) => (
+								<option key={child.href} value={child.href}>
+									{child.name}
+								</option>
+							))}
+						</optgroup>
+					);
+				})}
+			</select>
+		</div>
 	);
 }
