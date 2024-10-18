@@ -8,7 +8,7 @@ Sets of custom extensions for tiptap editor, ready to use with shadcn/ui compone
 - **Framework:** [Next.js](https://nextjs.org)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com)
 - **UI Components:** [shadcn/ui](https://ui.shadcn.com)
-- **Tiptap (Editor):** [Zod](https://tiptap.dev)
+- **Tiptap (Editor):** [Tiptap](https://tiptap.dev)
 
 ## Running Locally
 
