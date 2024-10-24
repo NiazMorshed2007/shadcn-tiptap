@@ -119,13 +119,56 @@ function TiptapImage(props: NodeViewProps) {
 		setResizeInitialWidth(0);
 	}
 
+	function handleTouchStart(event: React.TouchEvent, position: "left" | "right") {
+		event.preventDefault();
+		
+		setResizing(true);
+		setResizingPosition(position);
+		
+		setResizeInitialMouseX(event.touches[0].clientX);
+		if (imageRef.current) {
+			setResizeInitialWidth(imageRef.current.offsetWidth);
+		}
+	}
+
+	function handleTouchMove(event: TouchEvent) {
+		if (!resizing) return;
+
+		let dx = event.touches[0].clientX - resizeInitialMouseX;
+		if (resizingPosition === "left") {
+			dx = resizeInitialMouseX - event.touches[0].clientX;
+		}
+
+		const newWidth = Math.max(resizeInitialWidth + dx, 150);
+		const parentWidth = nodeRef.current?.parentElement?.offsetWidth || 0;
+
+		if (newWidth < parentWidth) {
+			updateAttributes({
+				width: newWidth,
+			});
+		}
+	}
+
+	function handleTouchEnd() {
+		setResizing(false);
+		setResizeInitialMouseX(0);
+		setResizeInitialWidth(0);
+	}
+
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
+		// Mouse events
 		window.addEventListener("mousemove", resize);
 		window.addEventListener("mouseup", endResize);
+		// Touch events
+		window.addEventListener("touchmove", handleTouchMove);
+		window.addEventListener("touchend", handleTouchEnd);
+		
 		return () => {
 			window.removeEventListener("mousemove", resize);
 			window.removeEventListener("mouseup", endResize);
+			window.removeEventListener("touchmove", handleTouchMove);
+			window.removeEventListener("touchend", handleTouchEnd);
 		};
 	}, [resizing, resizeInitialMouseX, resizeInitialWidth]);
 
@@ -165,6 +208,7 @@ function TiptapImage(props: NodeViewProps) {
 							onMouseDown={(event) => {
 								handleResizingPosition({ e: event, position: "left" });
 							}}
+							onTouchStart={(event) => handleTouchStart(event, "left")}
 						>
 							<div className="z-20 h-[70px] w-1 rounded-xl border bg-[rgba(0,0,0,0.65)] opacity-0 transition-all group-hover:opacity-100" />
 						</div>
@@ -174,6 +218,7 @@ function TiptapImage(props: NodeViewProps) {
 							onMouseDown={(event) => {
 								handleResizingPosition({ e: event, position: "right" });
 							}}
+							onTouchStart={(event) => handleTouchStart(event, "right")}
 						>
 							<div className="z-20 h-[70px] w-1 rounded-xl border bg-[rgba(0,0,0,0.65)] opacity-0 transition-all group-hover:opacity-100" />
 						</div>
