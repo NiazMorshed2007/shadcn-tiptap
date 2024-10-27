@@ -1,0 +1,770 @@
+---
+title: StarterKit
+description: StarterKit is a collection of most used Tiptap extensions.
+links:
+    doc: https://tiptap.dev/docs/editor/extensions/functionality/starterkit
+---
+
+
+<ComponentPreview name="starter-kit-example" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+
+<Steps>
+<Step>Run the following command to install the extension & associated toolbar components.</Step>
+
+```bash
+npx shadcn add https://tiptap.niazmorshed.dev/r/starter-kit.json
+```
+
+<Step>Running this command will add the following toolbars to your project.</Step>
+
+- Bold
+- Italic
+- Strikethrough
+- Code
+- Bullet List
+- Ordered List
+- Blockquote
+- Code Block
+- Horizontal Rule
+- Hard Break
+- Redo
+- Undo
+
+</Steps>
+</TabsContent>
+<TabsContent value="manual">
+<Steps>
+
+<Step>Install the following extension.</Step>
+
+```bash
+npm install @tiptap/extension-starter-kit
+```
+
+<Step>Make sure to install the [Button](https://ui.shadcn.com/docs/components/button) & [Tooltip](https://ui.shadcn.com/docs/components/tooltip) components from @shadcn/ui.</Step>
+
+<Step>Now add the toolbars needed for StarterKit. Here is a demo of all of the toolbars.</Step>
+
+<ComponentPreview name="starter-kit-toolbar-example" />
+
+<Step>Add `Bold` toolbar</Step>
+
+```jsx
+"use client";
+
+import { BoldIcon } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const BoldToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn(
+							"h-8 w-8",
+							editor?.isActive("bold") && "bg-accent",
+							className,
+						)}
+						onClick={(e) => {
+							editor?.chain().focus().toggleBold().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().toggleBold().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <BoldIcon className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Bold</span>
+					<span className="ml-1 text-xs text-gray-11">(cmd + b)</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+BoldToolbar.displayName = "BoldToolbar";
+
+export { BoldToolbar };
+```
+
+<Step>Add `Italic` toolbar</Step>
+
+```jsx
+"use client";
+
+import { ItalicIcon } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const ItalicToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn(
+							"h-8 w-8",
+							editor?.isActive("italic") && "bg-accent",
+							className,
+						)}
+						onClick={(e) => {
+							editor?.chain().focus().toggleItalic().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().toggleItalic().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <ItalicIcon className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Italic</span>
+					<span className="ml-1 text-xs text-gray-11">(cmd + i)</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+ItalicToolbar.displayName = "ItalicToolbar";
+
+export { ItalicToolbar };
+```
+
+<Step>Add `Strikethrough` toolbar</Step>
+
+```jsx
+"use client";
+
+import { Strikethrough } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const StrikeThroughToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn(
+							"h-8 w-8",
+							editor?.isActive("strike") && "bg-accent",
+							className,
+						)}
+						onClick={(e) => {
+							editor?.chain().focus().toggleStrike().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().toggleStrike().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <Strikethrough className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Strikethrough</span>
+					<span className="ml-1 text-xs text-gray-11">(cmd + shift + x)</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+StrikeThroughToolbar.displayName = "StrikeThroughToolbar";
+
+export { StrikeThroughToolbar };
+
+```
+
+<Step>Add `Code` toolbar</Step>
+
+```jsx
+"use client";
+
+import { Code2 } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const CodeToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn(
+							"h-8 w-8",
+							editor?.isActive("code") && "bg-accent",
+							className,
+						)}
+						onClick={(e) => {
+							editor?.chain().focus().toggleCode().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().toggleCode().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <Code2 className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Code</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+CodeToolbar.displayName = "CodeToolbar";
+
+export { CodeToolbar };
+
+```
+
+<Step>Add `Bullet List` toolbar</Step>
+
+```jsx
+"use client";
+
+import { List } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const BulletListToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn(
+							"h-8 w-8",
+							editor?.isActive("bulletList") && "bg-accent",
+							className,
+						)}
+						onClick={(e) => {
+							editor?.chain().focus().toggleBulletList().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().toggleBulletList().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <List className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Bullet list</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+BulletListToolbar.displayName = "BulletListToolbar";
+
+export { BulletListToolbar };
+
+```
+
+<Step>Add `Ordered List` toolbar</Step>
+
+```jsx
+"use client";
+
+import { ListOrdered } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const OrderedListToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn(
+							"h-8 w-8",
+							editor?.isActive("orderedList") && "bg-accent",
+							className,
+						)}
+						onClick={(e) => {
+							editor?.chain().focus().toggleOrderedList().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().toggleOrderedList().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <ListOrdered className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Ordered list</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+OrderedListToolbar.displayName = "OrderedListToolbar";
+
+export { OrderedListToolbar };
+
+```
+
+<Step>Add `Blockquote` toolbar</Step>
+
+```jsx
+"use client";
+
+import { TextQuote } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const BlockquoteToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn(
+							"h-8 w-8",
+							editor?.isActive("blockquote") && "bg-accent",
+							className,
+						)}
+						onClick={(e) => {
+							editor?.chain().focus().toggleBlockquote().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().toggleBlockquote().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <TextQuote className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Blockquote</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+BlockquoteToolbar.displayName = "BlockquoteToolbar";
+
+export { BlockquoteToolbar };
+
+```
+
+<Step>Add `Code Block` toolbar</Step>
+
+```jsx
+"use client";
+
+import { Code, Code2 } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const CodeBlockToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn(
+							"h-8 w-8",
+							editor?.isActive("codeBlock") && "bg-accent",
+							className,
+						)}
+						onClick={(e) => {
+							editor?.chain().focus().toggleCodeBlock().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().toggleCodeBlock().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <Code className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Code Block</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+CodeBlockToolbar.displayName = "CodeBlockToolbar";
+
+export { CodeBlockToolbar };
+
+```
+
+<Step>Add `Horizontal Rule` toolbar</Step>
+
+```jsx
+"use client";
+
+import { SeparatorHorizontal } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const HorizontalRuleToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn("h-8 w-8", className)}
+						onClick={(e) => {
+							editor?.chain().focus().setHorizontalRule().run();
+							onClick?.(e);
+						}}
+						ref={ref}
+						{...props}
+					>
+						{children || <SeparatorHorizontal className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Horizontal Rule</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+HorizontalRuleToolbar.displayName = "HorizontalRuleToolbar";
+
+export { HorizontalRuleToolbar };
+
+```
+
+<Step>Add `Hard Break` toolbar</Step>
+
+```jsx
+"use client";
+
+import { WrapText } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const HardBreakToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn("h-8 w-8", className)}
+						onClick={(e) => {
+							editor?.chain().focus().setHardBreak().run();
+							onClick?.(e);
+						}}
+						ref={ref}
+						{...props}
+					>
+						{children || <WrapText className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Hard break</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+HardBreakToolbar.displayName = "HardBreakToolbar";
+
+export { HardBreakToolbar };
+
+```
+
+<Step>Add `Redo` toolbar</Step>
+
+```jsx
+"use client";
+
+import { CornerUpRight } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const RedoToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn("h-8 w-8", className)}
+						onClick={(e) => {
+							editor?.chain().focus().redo().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().redo().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <CornerUpRight className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Redo</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+RedoToolbar.displayName = "RedoToolbar";
+
+export { RedoToolbar };
+
+```
+
+
+<Step>Add `Undo` toolbar</Step>
+
+```jsx
+"use client";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+import { CornerUpLeft } from "lucide-react";
+import React from "react";
+
+const UndoToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	({ className, onClick, children, ...props }, ref) => {
+		const { editor } = useToolbar();
+
+		return (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button
+						variant="ghost"
+						size="icon"
+						className={cn("h-8 w-8", className)}
+						onClick={(e) => {
+							editor?.chain().focus().undo().run();
+							onClick?.(e);
+						}}
+						disabled={!editor?.can().chain().focus().undo().run()}
+						ref={ref}
+						{...props}
+					>
+						{children || <CornerUpLeft className="h-4 w-4" />}
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent>
+					<span>Undo</span>
+				</TooltipContent>
+			</Tooltip>
+		);
+	},
+);
+
+UndoToolbar.displayName = "UndoToolbar";
+
+export { UndoToolbar };
+
+```
+
+</Steps>
+</TabsContent>
+</Tabs>
+
+
+## Usage
+
+
+```jsx
+const extensions = [
+    StarterKit.configure({
+		orderedList: {
+			HTMLAttributes: {
+				class: "list-decimal",
+			},
+		},
+		bulletList: {
+			HTMLAttributes: {
+				class: "list-disc",
+			},
+		},
+		code: {
+			HTMLAttributes: {
+				class: "bg-accent rounded-md p-1",
+			},
+		},
+		horizontalRule: {
+			HTMLAttributes: {
+				class: "my-2",
+			},
+		},
+		codeBlock: {
+			HTMLAttributes: {
+				class: "bg-primary text-primary-foreground p-2 text-sm rounded-md p-1",
+			},
+		},
+		heading: {
+			levels: [1, 2, 3, 4],
+			HTMLAttributes: {
+				class: "tiptap-heading",
+			},
+		},
+	}),
+    // ...rest of the extensions
+];
+
+
+const editor = useEditor({
+    extensions,
+    content: "<h2 class="tiptap-heading" style="text-align: center">Hello world 🌍</h2>",
+});
+```

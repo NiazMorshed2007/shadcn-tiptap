@@ -36,6 +36,11 @@ export const docsConfig: DocsConfig = {
 			title: "Extensions",
 			items: [
 				{
+					title: "StarterKit",
+					href: "/docs/extensions/starter-kit",
+					items: [],
+				},
+				{
 					title: "Search & Replace",
 					href: "/docs/extensions/search-and-replace",
 					items: [],

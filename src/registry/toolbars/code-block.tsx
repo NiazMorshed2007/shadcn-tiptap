@@ -1,6 +1,6 @@
 "use client";
 
-import { BoldIcon } from "lucide-react";
+import { Code, Code2 } from "lucide-react";
 import React from "react";
 
 import { Button, type ButtonProps } from "@/components/ui/button";
@@ -11,12 +11,8 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { useToolbar } from "@/registry/toolbars/toolbar-provider";
-import type { Extension } from "@tiptap/core";
-import type { StarterKitOptions } from "@tiptap/starter-kit";
 
-type StarterKitExtensions = Extension<StarterKitOptions, any>;
-
-const BoldToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const CodeBlockToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
 	({ className, onClick, children, ...props }, ref) => {
 		const { editor } = useToolbar();
 		return (
@@ -27,29 +23,28 @@ const BoldToolbar = React.forwardRef<HTMLButtonElement, ButtonProps>(
 						size="icon"
 						className={cn(
 							"h-8 w-8",
-							editor?.isActive("bold") && "bg-accent",
+							editor?.isActive("codeBlock") && "bg-accent",
 							className,
 						)}
 						onClick={(e) => {
-							editor?.chain().focus().toggleBold().run();
+							editor?.chain().focus().toggleCodeBlock().run();
 							onClick?.(e);
 						}}
-						disabled={!editor?.can().chain().focus().toggleBold().run()}
+						disabled={!editor?.can().chain().focus().toggleCodeBlock().run()}
 						ref={ref}
 						{...props}
 					>
-						{children || <BoldIcon className="h-4 w-4" />}
+						{children || <Code className="h-4 w-4" />}
 					</Button>
 				</TooltipTrigger>
 				<TooltipContent>
-					<span>Bold</span>
-					<span className="ml-1 text-xs text-gray-11">(cmd + b)</span>
+					<span>Code Block</span>
 				</TooltipContent>
 			</Tooltip>
 		);
 	},
 );
 
-BoldToolbar.displayName = "BoldToolbar";
+CodeBlockToolbar.displayName = "CodeBlockToolbar";
 
-export { BoldToolbar };
+export { CodeBlockToolbar };

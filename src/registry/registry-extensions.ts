@@ -2,6 +2,70 @@ import type { Registry } from "./schema";
 
 export const extensions: Registry = [
 	{
+		name: "starter-kit",
+		type: "registry:block",
+		description: "Starter kit for the editor",
+		dependencies: ["@tiptap/starter-kit"],
+		registryDependencies: ["separator", "button", "tooltip"],
+		files: [
+			{
+				path: "toolbars/bold.tsx",
+				type: "registry:component",
+				target: "components/toolbars/bold.tsx",
+			},
+			{
+				path: "toolbars/blockquote.tsx",
+				type: "registry:component",
+				target: "components/toolbars/blockquote.tsx",
+			},
+			{
+				path: "toolbars/bullet-list.tsx",
+				type: "registry:component",
+				target: "components/toolbars/bullet-list.tsx",
+			},
+			{
+				path: "toolbars/code.tsx",
+				type: "registry:component",
+				target: "components/toolbars/code.tsx",
+			},
+			{
+				path: "toolbars/code-block.tsx",
+				type: "registry:component",
+				target: "components/toolbars/code-block.tsx",
+			},
+			{
+				path: "toolbars/hard-break.tsx",
+				type: "registry:component",
+				target: "components/toolbars/hard-break.tsx",
+			},
+			{
+				path: "toolbars/horizontal-rule.tsx",
+				type: "registry:component",
+				target: "components/toolbars/horizontal-rule.tsx",
+			},
+			{
+				path: "toolbars/italic.tsx",
+				type: "registry:component",
+				target: "components/toolbars/italic.tsx",
+			},
+			{
+				path: "toolbars/ordered-list.tsx",
+				type: "registry:component",
+				target: "components/toolbars/ordered-list.tsx",
+			},
+			{
+				path: "toolbars/redo.tsx",
+				type: "registry:component",
+				target: "components/toolbars/redo.tsx",
+			},
+			{
+				path: "toolbars/strikethrough.tsx",
+				type: "registry:component",
+				target: "components/toolbars/strikethrough.tsx",
+			},
+		],
+	},
+	{
 		name: "search-and-replace",
 		type: "registry:block",
 		description:

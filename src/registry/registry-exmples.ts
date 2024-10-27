@@ -2,6 +2,16 @@ import type { Registry } from "./schema";
 
 export const examples: Registry = [
 	{
+		name: "starter-kit-example",
+		type: "registry:example",
+		files: [
+			{
+				path: "examples/starter-kit-example.tsx",
+				type: "registry:example",
+			},
+		],
+	},
+	{
 		name: "search-and-replace-example",
 		type: "registry:example",
 		files: [
