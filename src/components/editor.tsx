@@ -42,11 +42,11 @@ const extensions = [
 				class: "list-disc",
 			},
 		},
-	}),
-	Heading.configure({
-		levels: [1, 2, 3, 4],
-		HTMLAttributes: {
-			class: "tiptap-heading",
+		heading: {
+			levels: [1, 2, 3, 4],
+			HTMLAttributes: {
+				class: "tiptap-heading",
+			},
 		},
 	}),
 	TextAlign.configure({

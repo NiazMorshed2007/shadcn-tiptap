@@ -5,6 +5,18 @@ import * as React from "react"
 
 export const Index: Record<string, any> = {
 
+  "starter-kit-example": {
+    name: "starter-kit-example",
+    description: "",
+    type: "registry:example",
+    registryDependencies: undefined,
+    files: ["src/registry/examples/starter-kit-example.tsx"],
+    component: React.lazy(() => import("@/registry/examples/starter-kit-example.tsx")),
+    source: "",
+    category: "",
+    subcategory: "",
+    chunks: []
+  },
   "search-and-replace-example": {
     name: "search-and-replace-example",
     description: "",
@@ -49,6 +61,18 @@ export const Index: Record<string, any> = {
     files: ["src/registry/examples/image-extended-example.tsx"],
     component: React.lazy(() => import("@/registry/examples/image-extended-example.tsx")),
     source: "",
+    category: "",
+    subcategory: "",
+    chunks: []
+  },
+  "starter-kit": {
+    name: "starter-kit",
+    description: "",
+    type: "registry:block",
+    registryDependencies: ["separator","button","tooltip"],
+    files: ["src/registry/toolbars/bold.tsx","src/registry/toolbars/blockquote.tsx","src/registry/toolbars/bullet-list.tsx","src/registry/toolbars/code.tsx","src/registry/toolbars/code-block.tsx","src/registry/toolbars/hard-break.tsx","src/registry/toolbars/horizontal-rule.tsx","src/registry/toolbars/italic.tsx","src/registry/toolbars/ordered-list.tsx","src/registry/toolbars/redo.tsx","src/registry/toolbars/strikethrough.tsx"],
+    component: React.lazy(() => import("@/registry/toolbars/bold.tsx")),
+    source: "src/__registry__/toolbars/bold.tsx",
     category: "",
     subcategory: "",
     chunks: []
@@ -109,6 +133,18 @@ export const Index: Record<string, any> = {
     files: ["src/registry/toolbars/toolbar-provider.tsx"],
     component: React.lazy(() => import("@/registry/toolbars/toolbar-provider.tsx")),
     source: "src/__registry__/toolbars/toolbar-provider.tsx",
+    category: "",
+    subcategory: "",
+    chunks: []
+  },
+  "starter-kit-toolbar-example": {
+    name: "starter-kit-toolbar-example",
+    description: "",
+    type: "registry:example",
+    registryDependencies: undefined,
+    files: ["src/registry/toolbar-examples/starter-kit-toolbar-example.tsx"],
+    component: React.lazy(() => import("@/registry/toolbar-examples/starter-kit-toolbar-example.tsx")),
+    source: "",
     category: "",
     subcategory: "",
     chunks: []
