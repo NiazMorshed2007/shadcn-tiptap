@@ -1,0 +1,12 @@
+{
+  "name": "image-placeholder-toolbar-example",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "toolbar-examples/image-placeholder-toolbar-example.tsx",
+      "type": "registry:example",
+      "content": "\"use client\";\n\nimport { ImageExtension } from \"@/components/extensions/image\";\nimport { ImagePlaceholder } from \"@/components/extensions/image-placeholder\";\nimport { ImagePlaceholderToolbar } from \"@/components/toolbars/image-placeholder-toolbar\";\nimport { ToolbarProvider } from \"@/components/toolbars/toolbar-provider\";\nimport { useEditor } from \"@tiptap/react\";\nimport StarterKit from \"@tiptap/starter-kit\";\n\nconst extensions = [\n\tStarterKit.configure({\n\t\torderedList: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"list-decimal\",\n\t\t\t},\n\t\t},\n\t\tblockquote: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"text-accent-foreground p-2\",\n\t\t\t},\n\t\t},\n\t\tbulletList: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"list-disc\",\n\t\t\t},\n\t\t},\n\t\theading: {\n\t\t\tlevels: [1, 2, 3, 4],\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"tiptap-heading\",\n\t\t\t},\n\t\t},\n\t}),\n\tImageExtension,\n\tImagePlaceholder,\n];\n\nconst ImagePlaceholderToolbarExample = () => {\n\tconst editor = useEditor({\n\t\textensions,\n\t\timmediatelyRender: false,\n\t});\n\n\tif (!editor) {\n\t\treturn null;\n\t}\n\treturn (\n\t\t<div className=\"w-full p-3 flex items-center justify-center\">\n\t\t\t<ToolbarProvider editor={editor}>\n\t\t\t\t<ImagePlaceholderToolbar />\n\t\t\t</ToolbarProvider>\n\t\t</div>\n\t);\n};\n\nexport default ImagePlaceholderToolbarExample;\n",
+      "target": "components/image-placeholder-toolbar-example.tsx"
+    }
+  ]
+}

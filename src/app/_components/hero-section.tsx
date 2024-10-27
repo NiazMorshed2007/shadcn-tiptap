@@ -4,6 +4,7 @@ import TiptapEditor from "@/components/editor";
 import { Button } from "@/components/ui/button";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
+import { Coffee } from "lucide-react";
 import Link from "next/link";
 
 export const HeroSection = ({ starCount: _ }: { starCount: number }) => {
@@ -73,11 +74,19 @@ export const HeroSection = ({ starCount: _ }: { starCount: number }) => {
 				<TiptapEditor />
 			</motion.div>
 
-			<footer className="text-sm pt-10">
-				Made with ❤️ by{" "}
-				<Link className="underline" href={"https://x.com/niazmorshed_"}>
-					Niaz Morshed
-				</Link>
+			<footer className="text-sm pt-10 flex flex-col items-center gap-7 w-full">
+				<div>
+					Made with ❤️ by{" "}
+					<Link className="underline" href={"https://x.com/niazmorshed_"}>
+						Niaz Morshed
+					</Link>
+				</div>
+				<Button asChild>
+					<Link target="_blank" href={"https://buymeacoffee.com/niazmorshed"}>
+						<Coffee className="size-4 mr-2" />
+						Buy me a coffee
+					</Link>
+				</Button>
 			</footer>
 		</motion.section>
 	);

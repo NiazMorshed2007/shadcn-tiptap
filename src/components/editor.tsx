@@ -7,7 +7,7 @@ import SearchAndReplace from "@/registry/extensions/search-and-replace";
 import { AlignmentTooolbar } from "@/registry/toolbars/alignment";
 import { BoldToolbar } from "@/registry/toolbars/bold";
 import { BulletListToolbar } from "@/registry/toolbars/bullet-list";
-import { ColorToolbar } from "@/registry/toolbars/color";
+import { ColorHighlightToolbar } from "@/registry/toolbars/color-and-highlight";
 import { ImagePlaceholderToolbar } from "@/registry/toolbars/image-placeholder-toolbar";
 import { ItalicToolbar } from "@/registry/toolbars/italic";
 import { LinkToolbar } from "@/registry/toolbars/link";
@@ -99,7 +99,7 @@ const TiptapEditor = () => {
 						<OrderedListToolbar />
 						<AlignmentTooolbar />
 						<ImagePlaceholderToolbar />
-						<ColorToolbar />
+						<ColorHighlightToolbar />
 					</div>
 					<SearchAndReplaceToolbar />
 				</ToolbarProvider>

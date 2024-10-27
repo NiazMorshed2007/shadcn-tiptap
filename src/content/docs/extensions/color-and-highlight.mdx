@@ -1,6 +1,267 @@
 ---
 title: Color and Highlight
 description: Color and highlight extensions for Tiptap
+links:
 ---
 
 <ComponentPreview name="color-highlight-example" />
+
+
+## Installation
+
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+<Steps>
+
+<Step>Run the following command to install associated toolbar component.</Step>
+```bash
+npx shadcn add https://tiptap.niazmorshed.dev/r/color-and-highlight.json
+```
+
+<Step>Add the following colors to your CSS file</Step>
+
+The command above should install the colors for you. If not, copy and paste the following in your CSS file.
+
+```css title="app/globals.css"
+@layer base {
+	:root {
+        --text-default: #000000;
+		--text-gray: #6b7280;
+		--text-brown: #92400e;
+		--text-orange: #ea580c;
+		--text-yellow: #ca8a04;
+		--text-green: #16a34a;
+		--text-blue: #2563eb;
+		--text-purple: #9333ea;
+		--text-pink: #db2777;
+		--text-red: #dc2626;
+
+		--highlight-default: #ffffff;
+		--highlight-gray: #f3f4f6;
+		--highlight-brown: #fef3c7;
+		--highlight-orange: #ffedd5;
+		--highlight-yellow: #fef9c3;
+		--highlight-green: #dcfce7;
+		--highlight-blue: #dbeafe;
+		--highlight-purple: #f3e8ff;
+		--highlight-pink: #fce7f3;
+		--highlight-red: #fee2e2;
+	}
+
+	.dark {
+		--text-default: #ffffff;
+		--text-gray: #9ca3af;
+		--text-brown: #d97706;
+		--text-orange: #f97316;
+		--text-yellow: #eab308;
+		--text-green: #22c55e;
+		--text-blue: #3b82f6;
+		--text-purple: #a855f7;
+		--text-pink: #ec4899;
+		--text-red: #ef4444;
+
+		--highlight-default: #1f2937;
+		--highlight-gray: #374151;
+		--highlight-brown: #78350f;
+		--highlight-orange: #9a3412;
+		--highlight-yellow: #854d0e;
+		--highlight-green: #166534;
+		--highlight-blue: #1e40af;
+		--highlight-purple: #6b21a8;
+		--highlight-pink: #9d174d;
+		--highlight-red: #991b1b;
+	}
+}
+```
+
+<Step>Enable `multicolor` for Highlight extension when using it.</Step>
+```jsx
+extensions: [
+    Highlight.configure({
+		multicolor: true,
+	}),
+]
+```
+</Steps>
+</TabsContent>
+<TabsContent value="manual">
+<Steps>
+
+<Step>Install the following dependencies.</Step>
+
+```bash
+npm install @tiptap/extension-text-style @tiptap/extension-highlight @tiptap/extension-color
+```
+
+<Step>Copy & paste the css variables.</Step>
+
+```css title="app/globals.css"
+@layer base {
+	:root {
+        --text-default: #000000;
+		--text-gray: #6b7280;
+		--text-brown: #92400e;
+		--text-orange: #ea580c;
+		--text-yellow: #ca8a04;
+		--text-green: #16a34a;
+		--text-blue: #2563eb;
+		--text-purple: #9333ea;
+		--text-pink: #db2777;
+		--text-red: #dc2626;
+
+		--highlight-default: #ffffff;
+		--highlight-gray: #f3f4f6;
+		--highlight-brown: #fef3c7;
+		--highlight-orange: #ffedd5;
+		--highlight-yellow: #fef9c3;
+		--highlight-green: #dcfce7;
+		--highlight-blue: #dbeafe;
+		--highlight-purple: #f3e8ff;
+		--highlight-pink: #fce7f3;
+		--highlight-red: #fee2e2;
+	}
+
+	.dark {
+		--text-default: #ffffff;
+		--text-gray: #9ca3af;
+		--text-brown: #d97706;
+		--text-orange: #f97316;
+		--text-yellow: #eab308;
+		--text-green: #22c55e;
+		--text-blue: #3b82f6;
+		--text-purple: #a855f7;
+		--text-pink: #ec4899;
+		--text-red: #ef4444;
+
+		--highlight-default: #1f2937;
+		--highlight-gray: #374151;
+		--highlight-brown: #78350f;
+		--highlight-orange: #9a3412;
+		--highlight-yellow: #854d0e;
+		--highlight-green: #166534;
+		--highlight-blue: #1e40af;
+		--highlight-purple: #6b21a8;
+		--highlight-pink: #9d174d;
+		--highlight-red: #991b1b;
+	}
+}
+```
+
+<Step>Add the [Color & Highlight Toolbar](/docs/toolbars/color-and-highlight) to your editor.</Step>
+
+<Step>Enable `multicolor` for Highlight extension when using it.</Step>
+```jsx
+extensions: [
+    Highlight.configure({
+		multicolor: true,
+	}),
+]
+```
+</Steps>
+</TabsContent>
+</Tabs>
+
+## Usage
+
+```jsx
+"use client";
+
+import { ColorToolbar } from "@/components/toolbars/color";
+import { ToolbarProvider } from "@/components/toolbars/toolbar-provider";
+import Color from "@tiptap/extension-color";
+import Highlight from "@tiptap/extension-highlight";
+import TextAlign from "@tiptap/extension-text-align";
+import TextStyle from "@tiptap/extension-text-style";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+
+const extensions = [
+	StarterKit.configure({
+		orderedList: {
+			HTMLAttributes: {
+				class: "list-decimal",
+			},
+		},
+		heading: {
+			levels: [1, 2, 3, 4],
+			HTMLAttributes: {
+				class: "tiptap-heading",
+			},
+		},
+		blockquote: {
+			HTMLAttributes: {
+				class: "text-accent-foreground p-2",
+			},
+		},
+		bulletList: {
+			HTMLAttributes: {
+				class: "list-disc",
+			},
+		},
+	}),
+	TextAlign.configure({
+		types: ["heading", "paragraph"],
+	}),
+	TextStyle,
+	Color,
+	Highlight.configure({
+		multicolor: true,
+	}),
+];
+
+const content = `
+<h2 class="tiptap-heading">Exploring Text Colors and Highlights 🎨</h2>
+<p>Welcome to our color and highlight demonstration!</p>
+<p>Here's some <span style="color: var(--text-red);">red text</span> to catch your eye.</p>
+<p>And now, let's try a <span style="background-color: var(--highlight-yellow);">yellow highlight</span> for emphasis.</p>
+<p>We can also combine <span style="color: var(--text-blue); background-color: var(--highlight-orange);">blue text with an orange background</span>.</p>
+<p>Feel free to experiment with the color toolbar above to create your own colorful content!</p>
+<p>Remember, judicious use of color can enhance readability and highlight key points in your document.</p>
+`;
+
+const ColorHighlightExample = () => {
+	const editor = useEditor({
+		extensions,
+		content,
+		immediatelyRender: false,
+	});
+
+	if (!editor) {
+		return null;
+	}
+	return (
+		<div className="border w-full relative rounded-md overflow-hidden pb-3">
+			<div className="flex w-full items-center py-2 px-2 justify-between border-b  sticky top-0 left-0 bg-background z-20">
+				<ToolbarProvider editor={editor}>
+					<ColorToolbar />
+				</ToolbarProvider>
+			</div>
+			<div
+				onClick={() => {
+					editor?.chain().focus().run();
+				}}
+				className="cursor-text min-h-[18rem] bg-background"
+			>
+				<EditorContent className="outline-none" editor={editor} />
+			</div>
+		</div>
+	);
+};
+
+export ColorHighlightExample;
+
+```
+
+
+## API Reference
+
+- [TextStyle](https://tiptap.dev/docs/editor/extensions/marks/text-style#page-title)
+- [Highlight](https://tiptap.dev/docs/editor/extensions/marks/highlight#page-title)
+- [Color](https://tiptap.dev/docs/editor/extensions/functionality/color#page-title)

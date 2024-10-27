@@ -5,8 +5,7 @@
   "dependencies": [
     "@tiptap/extension-text-style",
     "@tiptap/extension-color",
-    "@tiptap/extension-highlight",
-    "@tiptap/core"
+    "@tiptap/extension-highlight"
   ],
   "registryDependencies": [
     "popover",

@@ -1,0 +1,86 @@
+---
+title: Image placeholder toolbar
+description: A toolbar for adding image placeholder.
+---
+
+<Callout>
+**Note:** This toolbar requires the [Image placeholder](/docs/extensions/image-placeholder) extension to be installed manually.
+</Callout>
+
+
+<ComponentPreview name="image-placeholder-toolbar-example" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn add https://tiptap.niazmorshed.dev/r/image-placeholder-toolbar.json
+```
+</TabsContent>
+<TabsContent value="manual">
+<Steps>
+<Step>Install [Button](https://ui.shadcn.com/docs/components/button), [Tooltip](https://ui.shadcn.com/docs/components/tooltip) components from @shadcn/ui</Step>
+<Step>Copy & paste the following code under `components/toolbars/image-placeholder-toolbar.tsx`.</Step>
+```jsx
+"use client";
+
+import { Image } from "lucide-react";
+import React from "react";
+
+import { Button, type ButtonProps } from "@/components/ui/button";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+
+const ImagePlaceholderToolbar = React.forwardRef<
+	HTMLButtonElement,
+	ButtonProps
+>(({ className, onClick, children, ...props }, ref) => {
+	const { editor } = useToolbar();
+	return (
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<Button
+					variant="ghost"
+					size="icon"
+					className={cn(
+						"h-8 w-8",
+						editor?.isActive("image-placeholder") && "bg-accent",
+						className,
+					)}
+					onClick={(e) => {
+						editor?.chain().focus().insertImagePlaceholder().run();
+						onClick?.(e);
+					}}
+					ref={ref}
+					{...props}
+				>
+					{children || <Image className="h-4 w-4" />}
+				</Button>
+			</TooltipTrigger>
+			<TooltipContent>
+				<span>Image</span>
+			</TooltipContent>
+		</Tooltip>
+	);
+});
+
+ImagePlaceholderToolbar.displayName = "ImagePlaceholderToolbar";
+
+export { ImagePlaceholderToolbar };
+
+```
+</Steps>
+</TabsContent>
+</Tabs>

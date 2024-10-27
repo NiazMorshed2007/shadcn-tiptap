@@ -13,7 +13,7 @@ export const docsConfig: DocsConfig = {
 		},
 		{
 			title: "Extensions",
-			href: "/docs/extensions/search-replace",
+			href: "/docs/extensions/search-and-replace",
 		},
 	],
 	sidebarNav: [
@@ -55,6 +55,26 @@ export const docsConfig: DocsConfig = {
 				{
 					title: "Color and Highlight",
 					href: "/docs/extensions/color-and-highlight",
+					items: [],
+				},
+			],
+		},
+		{
+			title: "Toolbars",
+			items: [
+				{
+					title: "Search & Replace",
+					href: "/docs/toolbars/search-and-replace",
+					items: [],
+				},
+				{
+					title: "Image placeholder",
+					href: "/docs/toolbars/image-placeholder",
+					items: [],
+				},
+				{
+					title: "Color and Highlight",
+					href: "/docs/toolbars/color-and-highlight",
 					items: [],
 				},
 			],

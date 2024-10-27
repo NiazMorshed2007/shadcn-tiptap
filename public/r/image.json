@@ -1,11 +1,8 @@
 {
-  "name": "image-placeholder",
+  "name": "image",
   "type": "registry:block",
   "description": "",
   "dependencies": [
-    "@tiptap/core",
-    "@tiptap/react",
-    "react-dropzone",
     "@tiptap/extension-image"
   ],
   "registryDependencies": [
