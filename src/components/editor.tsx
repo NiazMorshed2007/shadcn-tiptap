@@ -1,33 +1,34 @@
 "use client";
 
-import { ImageExtension } from "@/extensions/image";
-import { ImagePlaceholder } from "@/extensions/image-placeholder";
-import SearchAndReplace from "@/extensions/search-and-replace";
+import { Separator } from "@/components/ui/separator";
+import { ImageExtension } from "@/registry/extensions/image";
+import { ImagePlaceholder } from "@/registry/extensions/image-placeholder";
+import SearchAndReplace from "@/registry/extensions/search-and-replace";
+import { AlignmentTooolbar } from "@/registry/toolbars/alignment";
+import { BoldToolbar } from "@/registry/toolbars/bold";
+import { BulletListToolbar } from "@/registry/toolbars/bullet-list";
+import { ColorToolbar } from "@/registry/toolbars/color";
+import { ImagePlaceholderToolbar } from "@/registry/toolbars/image-placeholder-toolbar";
+import { ItalicToolbar } from "@/registry/toolbars/italic";
+import { LinkToolbar } from "@/registry/toolbars/link";
+import { OrderedListToolbar } from "@/registry/toolbars/ordered-list";
+import { RedoToolbar } from "@/registry/toolbars/redo";
+import { SearchAndReplaceToolbar } from "@/registry/toolbars/search-and-replace-toolbar";
+import { ToolbarProvider } from "@/registry/toolbars/toolbar-provider";
+import { UnderlineToolbar } from "@/registry/toolbars/underline";
+import { UndoToolbar } from "@/registry/toolbars/undo";
+import { Color } from "@tiptap/extension-color";
 import Heading from "@tiptap/extension-heading";
+import Highlight from "@tiptap/extension-highlight";
 import Link from "@tiptap/extension-link";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
 import TextAlign from "@tiptap/extension-text-align";
 import TextStyle from "@tiptap/extension-text-style";
 import Underline from "@tiptap/extension-underline";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, type Extension, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { BorderTrail } from "./motion-primitives/border-trail";
-import { ToolbarProvider } from "./providers/toolbar-provider";
-import { AlignmentTooolbar } from "./toolbar-components/alignment";
-import { BulletListToolbar } from "./toolbar-components/bullet-list";
-import { ImageToolbar } from "./toolbar-components/image";
-import {
-	BoldToolbar,
-	ItalicToolbar,
-	LinkToolbar,
-	UnderlineToolbar,
-} from "./toolbar-components/marks";
-import { OrderedListToolbar } from "./toolbar-components/ordered-list";
-import { RedoToolbar } from "./toolbar-components/redo";
-import { SearchAndReplaceToolbar } from "./toolbar-components/search-and-replace-toolbar";
-import { UndoToolbar } from "./toolbar-components/undo";
-import { Separator } from "./ui/separator";
 
 const extensions = [
 	StarterKit.configure({
@@ -56,6 +57,10 @@ const extensions = [
 	Superscript,
 	Underline,
 	Link,
+	Color,
+	Highlight.configure({
+		multicolor: true,
+	}),
 	ImageExtension,
 	ImagePlaceholder,
 	SearchAndReplace,
@@ -70,7 +75,7 @@ const content = `
 
 const TiptapEditor = () => {
 	const editor = useEditor({
-		extensions,
+		extensions: extensions as Extension[],
 		content,
 	});
 
@@ -93,12 +98,12 @@ const TiptapEditor = () => {
 						<BulletListToolbar />
 						<OrderedListToolbar />
 						<AlignmentTooolbar />
-						<ImageToolbar />
+						<ImagePlaceholderToolbar />
+						<ColorToolbar />
 					</div>
 					<SearchAndReplaceToolbar />
 				</ToolbarProvider>
 			</div>
-			{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<div
 				onClick={() => {
 					editor?.chain().focus().run();

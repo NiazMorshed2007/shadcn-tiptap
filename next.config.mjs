@@ -1,18 +1,28 @@
-import { remarkCodeHike } from "@code-hike/mdx";
-import createMDX from "@next/mdx";
-import remarkGfm from "remark-gfm";
+import { createContentlayerPlugin } from "next-contentlayer2";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
-	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+	swcMinify: true,
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "avatars.githubusercontent.com",
+			},
+			{
+				protocol: "https",
+				hostname: "images.unsplash.com",
+			},
+		],
+	},
+	redirects() {
+		return [];
+	},
 };
 
-const withMDX = createMDX({
-	extension: /\.mdx?$/,
-	options: {
-		remarkPlugins: [remarkGfm, [remarkCodeHike, { theme: "css-variables" }]],
-	},
+const withContentlayer = createContentlayerPlugin({
+	// Additional Contentlayer config options
 });
 
-export default withMDX(nextConfig);
+export default withContentlayer(nextConfig);

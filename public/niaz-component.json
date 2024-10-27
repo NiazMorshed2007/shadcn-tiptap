@@ -1,0 +1,14 @@
+{
+  "name": "niaz-component",
+  "type": "registry:ui",
+  "registryDependencies": [],
+  "dependencies": [],
+  "devDependencies": [],
+  "files": [
+    {
+      "path": "niaz-component.tsx",
+      "content": "export const NiazComponent = () => {\n\treturn <div>NiazComponent</div>;\n};\n",
+      "target": ""
+    }
+  ]
+}

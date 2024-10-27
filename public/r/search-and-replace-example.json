@@ -1,0 +1,12 @@
+{
+  "name": "search-and-replace-example",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "examples/search-and-replace-example.tsx",
+      "type": "registry:example",
+      "content": "\"use client\";\n\nimport SearchAndReplace from \"@/components/extensions/search-and-replace\";\nimport { SearchAndReplaceToolbar } from \"@/components/toolbars/search-and-replace-toolbar\";\nimport { ToolbarProvider } from \"@/components/toolbars/toolbar-provider\";\nimport { EditorContent, useEditor } from \"@tiptap/react\";\nimport StarterKit from \"@tiptap/starter-kit\";\n\nconst extensions = [\n\tStarterKit.configure({\n\t\torderedList: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"list-decimal\",\n\t\t\t},\n\t\t},\n\t\tblockquote: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"text-accent-foreground p-2\",\n\t\t\t},\n\t\t},\n\t\tbulletList: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"list-disc\",\n\t\t\t},\n\t\t},\n\t\theading: {\n\t\t\tlevels: [1, 2, 3, 4],\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"tiptap-heading\",\n\t\t\t},\n\t\t},\n\t}),\n\tSearchAndReplace,\n];\n\nconst content = `\n  <p><strong>Try searching for the word \"the\"</strong>.</p>\n  <blockquote><p>\"The only thing we have to fear is fear itself.\" - Franklin D. Roosevelt</p></blockquote>\n  <p>The quick brown fox jumps over the lazy dog.</p>\n  <p>In the end, we only regret the chances we didn't take.</p>`;\n\nconst SearchReplaceExample = () => {\n\tconst editor = useEditor({\n\t\textensions,\n\t\tcontent,\n\t\timmediatelyRender: false,\n\t});\n\n\tif (!editor) {\n\t\treturn null;\n\t}\n\treturn (\n\t\t<div className=\"border w-full relative rounded-md overflow-hidden pb-3\">\n\t\t\t<div className=\"flex items-center justify-end p-2 border-b\">\n\t\t\t\t<ToolbarProvider editor={editor}>\n\t\t\t\t\t<SearchAndReplaceToolbar />\n\t\t\t\t</ToolbarProvider>\n\t\t\t</div>\n\t\t\t<div\n\t\t\t\tonClick={() => {\n\t\t\t\t\teditor?.chain().focus().run();\n\t\t\t\t}}\n\t\t\t\tclassName=\"cursor-text min-h-[18rem] bg-background\"\n\t\t\t>\n\t\t\t\t<EditorContent className=\"outline-none\" editor={editor} />\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n\nexport default SearchReplaceExample;\n",
+      "target": "components/search-and-replace-example.tsx"
+    }
+  ]
+}

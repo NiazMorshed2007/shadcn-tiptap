@@ -30,18 +30,27 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    --shiki-foreground: #ffffff;
-    --shiki-token-constant: #a7a7a7;
-    --shiki-token-string: #a7a7a7;
-    --shiki-token-comment: #666666;
-    --shiki-token-keyword: #a7a7a7;
-    --shiki-token-parameter: #a7a7a7;
-    --shiki-token-function: #ffffff;
-    --shiki-token-string-expression: #a7a7a7;
-    --shiki-token-punctuation: #a7a7a7;
-    --shiki-token-link: #a7a7a7;
-    --shiki-token-number: #ffffff;
-    --shiki-token-property: #a7a7a7;
+    --text-default: #000000;
+    --text-gray: #6B7280;
+    --text-brown: #92400E;
+    --text-orange: #EA580C;
+    --text-yellow: #CA8A04;
+    --text-green: #16A34A;
+    --text-blue: #2563EB;
+    --text-purple: #9333EA;
+    --text-pink: #DB2777;
+    --text-red: #DC2626;
+
+    --highlight-default: #FFFFFF;
+    --highlight-gray: #F3F4F6;
+    --highlight-brown: #FEF3C7;
+    --highlight-orange: #FFEDD5;
+    --highlight-yellow: #FEF9C3;
+    --highlight-green: #DCFCE7;
+    --highlight-blue: #DBEAFE;
+    --highlight-purple: #F3E8FF;
+    --highlight-pink: #FCE7F3;
+    --highlight-red: #FEE2E2;
   }
 
   .dark {
@@ -69,6 +78,28 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    --text-default: #FFFFFF;
+    --text-gray: #9CA3AF;
+    --text-brown: #D97706;
+    --text-orange: #F97316;
+    --text-yellow: #EAB308;
+    --text-green: #22C55E;
+    --text-blue: #3B82F6;
+    --text-purple: #A855F7;
+    --text-pink: #EC4899;
+    --text-red: #EF4444;
+
+    --highlight-default: #1F2937;
+    --highlight-gray: #374151;
+    --highlight-brown: #78350F;
+    --highlight-orange: #9A3412;
+    --highlight-yellow: #854D0E;
+    --highlight-green: #166534;
+    --highlight-blue: #1E40AF;
+    --highlight-purple: #6B21A8;
+    --highlight-pink: #9D174D;
+    --highlight-red: #991B1B;
   }
 }
 

@@ -1,0 +1,12 @@
+{
+  "name": "image-placeholder-example",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "examples/image-placeholder-example.tsx",
+      "type": "registry:example",
+      "content": "\"use client\";\n\nimport { ImageExtension } from \"@/components/extensions/image\";\nimport { ImagePlaceholder } from \"@/components/extensions/image-placeholder\";\nimport { ImagePlaceholderToolbar } from \"@/components/toolbars/image-placeholder-toolbar\";\nimport { ToolbarProvider } from \"@/components/toolbars/toolbar-provider\";\nimport TextAlign from \"@tiptap/extension-text-align\";\nimport { EditorContent, useEditor } from \"@tiptap/react\";\nimport StarterKit from \"@tiptap/starter-kit\";\n\nconst extensions = [\n\tStarterKit.configure({\n\t\torderedList: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"list-decimal\",\n\t\t\t},\n\t\t},\n\t\tblockquote: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \" text-accent p-2\",\n\t\t\t},\n\t\t},\n\t\tbulletList: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"list-disc\",\n\t\t\t},\n\t\t},\n\t\theading: {\n\t\t\tlevels: [1, 2, 3, 4],\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"tiptap-heading\",\n\t\t\t},\n\t\t},\n\t}),\n\tTextAlign.configure({\n\t\ttypes: [\"heading\", \"paragraph\"],\n\t}),\n\tImageExtension,\n\tImagePlaceholder,\n];\n\nconst content = `\n<h2 class=\"tiptap-heading\">A notion style image placeholder.</h2>\n<p>Try adding a image here by clicking the media icon 👆</p>\n`;\n\nconst ImagePlaceholderPlayground = () => {\n\tconst editor = useEditor({\n\t\textensions,\n\t\tcontent,\n\t\timmediatelyRender: false,\n\t});\n\n\tif (!editor) {\n\t\treturn null;\n\t}\n\treturn (\n\t\t<div className=\"border w-full relative rounded-md overflow-hidden pb-3\">\n\t\t\t<div className=\"flex w-full items-center py-2 px-2 justify-between border-b  sticky top-0 left-0 bg-background z-20\">\n\t\t\t\t<ToolbarProvider editor={editor}>\n\t\t\t\t\t<ImagePlaceholderToolbar />\n\t\t\t\t</ToolbarProvider>\n\t\t\t</div>\n\t\t\t<div\n\t\t\t\tonClick={() => {\n\t\t\t\t\teditor?.chain().focus().run();\n\t\t\t\t}}\n\t\t\t\tclassName=\"cursor-text min-h-[18rem] bg-background\"\n\t\t\t>\n\t\t\t\t<EditorContent className=\"outline-none\" editor={editor} />\n\t\t\t</div>\n\t\t</div>\n\t);\n};\n\nexport default ImagePlaceholderPlayground;\n",
+      "target": "components/image-placeholder-example.tsx"
+    }
+  ]
+}
