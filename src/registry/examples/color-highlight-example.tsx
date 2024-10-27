@@ -1,6 +1,6 @@
 "use client";
 
-import { ColorToolbar } from "@/registry/toolbars/color";
+import { ColorHighlightToolbar } from "@/registry/toolbars/color-and-highlight";
 import { ToolbarProvider } from "@/registry/toolbars/toolbar-provider";
 import Color from "@tiptap/extension-color";
 import Highlight from "@tiptap/extension-highlight";
@@ -67,7 +67,7 @@ const ColorHighlightExample = () => {
 		<div className="border w-full relative rounded-md overflow-hidden pb-3">
 			<div className="flex w-full items-center py-2 px-2 justify-between border-b  sticky top-0 left-0 bg-background z-20">
 				<ToolbarProvider editor={editor}>
-					<ColorToolbar />
+					<ColorHighlightToolbar />
 				</ToolbarProvider>
 			</div>
 			<div

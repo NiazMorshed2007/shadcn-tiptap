@@ -6,7 +6,6 @@ export const extensions: Registry = [
 		type: "registry:block",
 		description:
 			"A block that allows you to search and replace text in the editor",
-		dependencies: ["@tiptap/core", "@tiptap/pm", "@tiptap/react"],
 		registryDependencies: [
 			"button",
 			"input",
@@ -27,11 +26,6 @@ export const extensions: Registry = [
 				type: "registry:component",
 				target: "components/toolbars/search-and-replace-toolbar.tsx",
 			},
-			{
-				path: "toolbars/toolbar-provider.tsx",
-				type: "registry:component",
-				target: "components/toolbars/toolbar-provider.tsx",
-			},
 		],
 	},
 	{
@@ -42,7 +36,6 @@ export const extensions: Registry = [
 			"@tiptap/extension-text-style",
 			"@tiptap/extension-color",
 			"@tiptap/extension-highlight",
-			"@tiptap/core",
 		],
 		registryDependencies: [
 			"popover",
@@ -115,6 +108,37 @@ export const extensions: Registry = [
 			"react-dropzone",
 			"@tiptap/extension-image",
 		],
+		registryDependencies: [
+			"input",
+			"popover",
+			"button",
+			"tabs",
+			"dropdown-menu",
+			"separator",
+		],
+		files: [
+			{
+				path: "extensions/image-placeholder.tsx",
+				type: "registry:component",
+				target: "components/extensions/image-placeholder.tsx",
+			},
+			{
+				path: "extensions/image.tsx",
+				type: "registry:component",
+				target: "components/extensions/image.tsx",
+			},
+			{
+				path: "toolbars/image-placeholder-toolbar.tsx",
+				type: "registry:component",
+				target: "components/toolbars/image-placeholder-toolbar.tsx",
+			},
+		],
+	},
+	{
+		name: "image",
+		type: "registry:block",
+		description: "Image feature in the editor.",
+		dependencies: ["@tiptap/extension-image"],
 		registryDependencies: [
 			"input",
 			"popover",

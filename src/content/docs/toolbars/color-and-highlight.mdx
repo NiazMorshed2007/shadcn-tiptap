@@ -1,8 +1,35 @@
+---
+title: Color and Highlight Toolbar
+description: A toolbar for adding color and highlight.
+---
+
+<Callout>
+**Note:** This toolbar requires the [Color and Highlight](/docs/extensions/color-and-highlight) extension to be installed manually.
+</Callout>
+
+<ComponentPreview name="color-and-highlight-toolbar-example" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+<TabsContent value="cli">
+
+```bash
+npx shadcn add https://tiptap.niazmorshed.dev/r/color-and-highlight-toolbar.json
+```
+</TabsContent>
+<TabsContent value="manual">
+<Steps>
+<Step>Install [Button](https://ui.shadcn.com/docs/components/button), [Tooltip](https://ui.shadcn.com/docs/components/tooltip), [Popover](https://ui.shadcn.com/docs/components/popover), [ScrollArea](https://ui.shadcn.com/docs/components/scroll-area), [Separator](https://ui.shadcn.com/docs/components/separator) components from @shadcn/ui</Step>
+<Step>Copy & paste the following code under `components/toolbars/color-and-highlight.tsx`.</Step>
+```jsx
 "use client";
 
-import { Check, ChevronDown } from "lucide-react";
-
-import { useToolbar } from "@/registry/toolbars/toolbar-provider";
 import { Button } from "@/components/ui/button";
 import {
 	Popover,
@@ -17,6 +44,15 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { useToolbar } from "@/components/toolbars/toolbar-provider";
+import type { Extension } from "@tiptap/core";
+import type { ColorOptions } from "@tiptap/extension-color";
+import type { HighlightOptions } from "@tiptap/extension-highlight";
+import { Check, ChevronDown } from "lucide-react";
+
+type TextStylingExtensions =
+	| Extension<ColorOptions, any>
+	| Extension<HighlightOptions, any>;
 
 const TEXT_COLORS = [
 	{ name: "Default", color: "var(--text-default)" },
@@ -44,7 +80,7 @@ const HIGHLIGHT_COLORS = [
 	{ name: "Red", color: "var(--highlight-red)" },
 ];
 
-interface ColorButtonProps {
+interface ColorHighlightButtonProps {
 	name: string;
 	color: string;
 	isActive: boolean;
@@ -52,13 +88,13 @@ interface ColorButtonProps {
 	isHighlight?: boolean;
 }
 
-const ColorButton: React.FC<ColorButtonProps> = ({
+const ColorHighlightButton = ({
 	name,
 	color,
 	isActive,
 	onClick,
 	isHighlight,
-}) => (
+}: ColorHighlightButtonProps) => (
 	<button
 		onClick={onClick}
 		className="flex w-full items-center justify-between rounded-sm px-2 py-1 text-sm hover:bg-gray-3"
@@ -77,7 +113,7 @@ const ColorButton: React.FC<ColorButtonProps> = ({
 	</button>
 );
 
-export const ColorToolbar: React.FC = () => {
+export const ColorHighlightToolbar = () => {
 	const { editor } = useToolbar();
 
 	const currentColor = editor?.getAttributes("textStyle").color;
@@ -129,7 +165,7 @@ export const ColorToolbar: React.FC = () => {
 					<ScrollArea className="max-h-80 overflow-y-auto pr-2">
 						<div className="mb-2.5 mt-2 px-2 text-xs text-gray-11">Color</div>
 						{TEXT_COLORS.map(({ name, color }) => (
-							<ColorButton
+							<ColorHighlightButton
 								key={name}
 								name={name}
 								color={color}
@@ -144,7 +180,7 @@ export const ColorToolbar: React.FC = () => {
 							Background
 						</div>
 						{HIGHLIGHT_COLORS.map(({ name, color }) => (
-							<ColorButton
+							<ColorHighlightButton
 								key={name}
 								name={name}
 								color={color}
@@ -159,3 +195,8 @@ export const ColorToolbar: React.FC = () => {
 		</Popover>
 	);
 };
+
+```
+</Steps>
+</TabsContent>
+</Tabs>

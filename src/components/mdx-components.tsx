@@ -9,8 +9,8 @@ import type * as React from "react";
 import { Callout } from "@/components/callout";
 import { CodeBlockWrapper } from "@/components/code-block-wrapper";
 import { ComponentExample } from "@/components/component-example";
-// import { ComponentPreview } from "@/components/component-preview";
-// import { ComponentSource } from "@/components/component-source";
+import { ComponentPreview } from "@/components/component-preview";
+import { ComponentSource } from "@/components/component-source";
 import { CopyButton, CopyNpmCommandButton } from "@/components/copy-button";
 import {
 	Accordion,
@@ -22,8 +22,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { ComponentPreview } from "./component-preview";
-import { ComponentSource } from "./component-source";
+import { Coffee, Star } from "lucide-react";
+import { Button } from "./ui/button";
 
 const components = {
 	Accordion,
@@ -31,6 +31,9 @@ const components = {
 	AccordionItem,
 	AccordionTrigger,
 	Alert,
+	Button,
+	Coffee,
+	Star,
 	AlertTitle,
 	AlertDescription,
 	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -166,17 +169,21 @@ const components = {
 		__bunCommand__,
 		__withMeta__,
 		__src__,
+		__event__,
+		__style__,
 		...props
 	}: React.HTMLAttributes<HTMLPreElement> & {
+		__style__?: string;
 		__rawString__?: string;
 		__withMeta__?: boolean;
 		__src__?: string;
+		__event__?: string;
 	} & NpmCommands) => {
 		return (
-			<div>
+			<div className="relative">
 				<pre
 					className={cn(
-						"mb-4 mt-6 max-h-[650px] overflow-x-auto rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
+						"mb-4 mt-6 max-h-[650px] overflow-x-auto [&>code]:bg-transparent [&>code]:px-4 rounded-lg border bg-zinc-950 py-4 dark:bg-zinc-900",
 						className,
 					)}
 					{...props}
@@ -208,7 +215,7 @@ const components = {
 	code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
 		<code
 			className={cn(
-				"relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm",
+				"relative rounded bg-accent px-[0.3rem] py-[0.2rem] font-mono text-sm",
 				className,
 			)}
 			{...props}

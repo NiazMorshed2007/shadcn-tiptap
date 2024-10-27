@@ -1,0 +1,12 @@
+{
+  "name": "color-and-highlight-toolbar-example",
+  "type": "registry:example",
+  "files": [
+    {
+      "path": "toolbar-examples/color-and-highlight-toolbar-example.tsx",
+      "type": "registry:example",
+      "content": "\"use client\";\n\nimport { ColorHighlightToolbar } from \"@/components/toolbars/color-and-highlight\";\nimport { ToolbarProvider } from \"@/components/toolbars/toolbar-provider\";\nimport Color from \"@tiptap/extension-color\";\nimport Highlight from \"@tiptap/extension-highlight\";\nimport TextStyle from \"@tiptap/extension-text-style\";\nimport { useEditor } from \"@tiptap/react\";\nimport StarterKit from \"@tiptap/starter-kit\";\n\nconst extensions = [\n\tStarterKit.configure({\n\t\torderedList: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"list-decimal\",\n\t\t\t},\n\t\t},\n\t\tblockquote: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"text-accent-foreground p-2\",\n\t\t\t},\n\t\t},\n\t\tbulletList: {\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"list-disc\",\n\t\t\t},\n\t\t},\n\t\theading: {\n\t\t\tlevels: [1, 2, 3, 4],\n\t\t\tHTMLAttributes: {\n\t\t\t\tclass: \"tiptap-heading\",\n\t\t\t},\n\t\t},\n\t}),\n\tTextStyle,\n\tColor,\n\tHighlight.configure({\n\t\tmulticolor: true,\n\t}),\n];\n\nconst ColorHighlightToolbarExample = () => {\n\tconst editor = useEditor({\n\t\textensions,\n\t\timmediatelyRender: false,\n\t});\n\n\tif (!editor) {\n\t\treturn null;\n\t}\n\treturn (\n\t\t<div className=\"w-full p-3 flex items-center justify-center\">\n\t\t\t<ToolbarProvider editor={editor}>\n\t\t\t\t<ColorHighlightToolbar />\n\t\t\t</ToolbarProvider>\n\t\t</div>\n\t);\n};\n\nexport default ColorHighlightToolbarExample;\n",
+      "target": "components/color-and-highlight-toolbar-example.tsx"
+    }
+  ]
+}

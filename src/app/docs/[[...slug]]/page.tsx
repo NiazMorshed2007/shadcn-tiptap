@@ -10,6 +10,7 @@ import Balancer from "react-wrap-balancer";
 import { Mdx } from "@/components/mdx-components";
 import { DocsPager } from "@/components/pager";
 import { DashboardTableOfContents } from "@/components/toc";
+import { badgeVariants } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
@@ -84,10 +85,6 @@ export default async function DocPage({ params }: DocPageProps) {
 	}
 
 	const toc = await getTableOfContents(doc.body.raw);
-
-	function badgeVariants(_: { variant: string }): import("clsx").ClassValue {
-		throw new Error("Function not implemented.");
-	}
 
 	return (
 		<main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">

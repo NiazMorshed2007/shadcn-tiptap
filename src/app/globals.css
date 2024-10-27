@@ -3,138 +3,157 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 240 10% 3.9%;
+		--card: 0 0% 100%;
+		--card-foreground: 240 10% 3.9%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 240 10% 3.9%;
+		--primary: 240 5.9% 10%;
+		--primary-foreground: 0 0% 98%;
+		--secondary: 240 4.8% 95.9%;
+		--secondary-foreground: 240 5.9% 10%;
+		--muted: 240 4.8% 95.9%;
+		--muted-foreground: 240 3.8% 46.1%;
+		--accent: 240 4.8% 95.9%;
+		--accent-foreground: 240 5.9% 10%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 240 5.9% 90%;
+		--input: 240 5.9% 90%;
+		--ring: 240 10% 3.9%;
+		--radius: 0.5rem;
+		--chart-1: 12 76% 61%;
+		--chart-2: 173 58% 39%;
+		--chart-3: 197 37% 24%;
+		--chart-4: 43 74% 66%;
+		--chart-5: 27 87% 67%;
 
-    --text-default: #000000;
-    --text-gray: #6B7280;
-    --text-brown: #92400E;
-    --text-orange: #EA580C;
-    --text-yellow: #CA8A04;
-    --text-green: #16A34A;
-    --text-blue: #2563EB;
-    --text-purple: #9333EA;
-    --text-pink: #DB2777;
-    --text-red: #DC2626;
+		--text-default: #000000;
+		--text-gray: #6b7280;
+		--text-brown: #92400e;
+		--text-orange: #ea580c;
+		--text-yellow: #ca8a04;
+		--text-green: #16a34a;
+		--text-blue: #2563eb;
+		--text-purple: #9333ea;
+		--text-pink: #db2777;
+		--text-red: #dc2626;
 
-    --highlight-default: #FFFFFF;
-    --highlight-gray: #F3F4F6;
-    --highlight-brown: #FEF3C7;
-    --highlight-orange: #FFEDD5;
-    --highlight-yellow: #FEF9C3;
-    --highlight-green: #DCFCE7;
-    --highlight-blue: #DBEAFE;
-    --highlight-purple: #F3E8FF;
-    --highlight-pink: #FCE7F3;
-    --highlight-red: #FEE2E2;
-  }
+		--highlight-default: #ffffff;
+		--highlight-gray: #f3f4f6;
+		--highlight-brown: #fef3c7;
+		--highlight-orange: #ffedd5;
+		--highlight-yellow: #fef9c3;
+		--highlight-green: #dcfce7;
+		--highlight-blue: #dbeafe;
+		--highlight-purple: #f3e8ff;
+		--highlight-pink: #fce7f3;
+		--highlight-red: #fee2e2;
+	}
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+	.dark {
+		--background: 240 10% 3.9%;
+		--foreground: 0 0% 98%;
+		--card: 240 10% 3.9%;
+		--card-foreground: 0 0% 98%;
+		--popover: 240 10% 3.9%;
+		--popover-foreground: 0 0% 98%;
+		--primary: 0 0% 98%;
+		--primary-foreground: 240 5.9% 10%;
+		--secondary: 240 3.7% 15.9%;
+		--secondary-foreground: 0 0% 98%;
+		--muted: 240 3.7% 15.9%;
+		--muted-foreground: 240 5% 64.9%;
+		--accent: 240 3.7% 15.9%;
+		--accent-foreground: 0 0% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 0 0% 98%;
+		--border: 240 3.7% 15.9%;
+		--input: 240 3.7% 15.9%;
+		--ring: 240 4.9% 83.9%;
+		--chart-1: 220 70% 50%;
+		--chart-2: 160 60% 45%;
+		--chart-3: 30 80% 55%;
+		--chart-4: 280 65% 60%;
+		--chart-5: 340 75% 55%;
 
-    --text-default: #FFFFFF;
-    --text-gray: #9CA3AF;
-    --text-brown: #D97706;
-    --text-orange: #F97316;
-    --text-yellow: #EAB308;
-    --text-green: #22C55E;
-    --text-blue: #3B82F6;
-    --text-purple: #A855F7;
-    --text-pink: #EC4899;
-    --text-red: #EF4444;
+		--text-default: #ffffff;
+		--text-gray: #9ca3af;
+		--text-brown: #d97706;
+		--text-orange: #f97316;
+		--text-yellow: #eab308;
+		--text-green: #22c55e;
+		--text-blue: #3b82f6;
+		--text-purple: #a855f7;
+		--text-pink: #ec4899;
+		--text-red: #ef4444;
 
-    --highlight-default: #1F2937;
-    --highlight-gray: #374151;
-    --highlight-brown: #78350F;
-    --highlight-orange: #9A3412;
-    --highlight-yellow: #854D0E;
-    --highlight-green: #166534;
-    --highlight-blue: #1E40AF;
-    --highlight-purple: #6B21A8;
-    --highlight-pink: #9D174D;
-    --highlight-red: #991B1B;
-  }
+		--highlight-default: #1f2937;
+		--highlight-gray: #374151;
+		--highlight-brown: #78350f;
+		--highlight-orange: #9a3412;
+		--highlight-yellow: #854d0e;
+		--highlight-green: #166534;
+		--highlight-blue: #1e40af;
+		--highlight-purple: #6b21a8;
+		--highlight-pink: #9d174d;
+		--highlight-red: #991b1b;
+	}
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
 }
 
+@layer utilities {
+	.step {
+		counter-increment: step;
+	}
+
+	.step:before {
+		@apply absolute w-9 h-9 bg-muted rounded-full font-mono font-medium text-center text-base inline-flex items-center justify-center -indent-px border-4 border-background;
+		@apply ml-[-50px] mt-[-4px];
+		content: counter(step);
+	}
+
+	.chunk-container {
+		@apply shadow-none;
+	}
+
+	.chunk-container::after {
+		content: "";
+		@apply absolute -inset-4 shadow-xl rounded-xl border;
+	}
+}
 
 .ProseMirror {
-  @apply px-4 pt-2;
-  outline: none !important;
+	@apply px-4 pt-2;
+	outline: none !important;
 }
 
-
 h1.tiptap-heading {
-  @apply mb-6 mt-8 text-4xl font-bold;
+	@apply mb-6 mt-8 text-4xl font-bold;
 }
 
 h2.tiptap-heading {
-  @apply mb-4 mt-6 text-3xl font-bold;
+	@apply mb-4 mt-6 text-3xl font-bold;
 }
 
 h3.tiptap-heading {
-  @apply mb-3 mt-4 text-xl font-bold;
+	@apply mb-3 mt-4 text-xl font-bold;
 }
 
 h1.tiptap-heading:first-child,
 h2.tiptap-heading:first-child,
 h3.tiptap-heading:first-child {
-  margin-top: 0;
+	margin-top: 0;
 }
 
 h1.tiptap-heading + h2.tiptap-heading,
@@ -143,21 +162,21 @@ h2.tiptap-heading + h1.tiptap-heading,
 h2.tiptap-heading + h3.tiptap-heading,
 h3.tiptap-heading + h1.tiptap-heading,
 h3.tiptap-heading + h2.tiptap-heading {
-  margin-top: 0;
+	margin-top: 0;
 }
 
 .tiptap p.is-editor-empty:first-child::before {
-  @apply pointer-events-none float-left h-0 text-accent-foreground;
-  content: attr(data-placeholder);
+	@apply pointer-events-none float-left h-0 text-accent-foreground;
+	content: attr(data-placeholder);
 }
 
 .tiptap ul,
 .tiptap ol {
-  padding: 0 1rem;
+	padding: 0 1rem;
 }
 
 .tiptap blockquote {
-    border-left: 3px solid gray;
-    margin: 1.5rem 0;
-    padding-left: 1rem;
+	border-left: 3px solid gray;
+	margin: 1.5rem 0;
+	padding-left: 1rem;
 }

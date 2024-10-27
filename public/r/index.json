@@ -3,11 +3,6 @@
     "name": "search-and-replace",
     "type": "registry:block",
     "description": "",
-    "dependencies": [
-      "@tiptap/core",
-      "@tiptap/pm",
-      "@tiptap/react"
-    ],
     "registryDependencies": [
       "button",
       "input",
@@ -27,11 +22,6 @@
         "path": "toolbars/search-and-replace-toolbar.tsx",
         "type": "registry:component",
         "target": "components/toolbars/search-and-replace-toolbar.tsx"
-      },
-      {
-        "path": "toolbars/toolbar-provider.tsx",
-        "type": "registry:component",
-        "target": "components/toolbars/toolbar-provider.tsx"
       }
     ]
   },
@@ -42,8 +32,7 @@
     "dependencies": [
       "@tiptap/extension-text-style",
       "@tiptap/extension-color",
-      "@tiptap/extension-highlight",
-      "@tiptap/core"
+      "@tiptap/extension-highlight"
     ],
     "registryDependencies": [
       "popover",
@@ -114,6 +103,39 @@
       "@tiptap/core",
       "@tiptap/react",
       "react-dropzone",
+      "@tiptap/extension-image"
+    ],
+    "registryDependencies": [
+      "input",
+      "popover",
+      "button",
+      "tabs",
+      "dropdown-menu",
+      "separator"
+    ],
+    "files": [
+      {
+        "path": "extensions/image-placeholder.tsx",
+        "type": "registry:component",
+        "target": "components/extensions/image-placeholder.tsx"
+      },
+      {
+        "path": "extensions/image.tsx",
+        "type": "registry:component",
+        "target": "components/extensions/image.tsx"
+      },
+      {
+        "path": "toolbars/image-placeholder-toolbar.tsx",
+        "type": "registry:component",
+        "target": "components/toolbars/image-placeholder-toolbar.tsx"
+      }
+    ]
+  },
+  {
+    "name": "image",
+    "type": "registry:block",
+    "description": "",
+    "dependencies": [
       "@tiptap/extension-image"
     ],
     "registryDependencies": [
