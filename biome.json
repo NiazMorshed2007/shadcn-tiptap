@@ -8,7 +8,15 @@
 		"rules": {
 			"recommended": true,
 			"style": {
-				"useBlockStatements": "error"
+				"useBlockStatements": "error",
+				"noUnusedTemplateLiteral": "off"
+			},
+			"a11y": {
+				"noSvgWithoutTitle": "off",
+				"useKeyWithClickEvents": "off"
+			},
+			"complexity": {
+				"useLiteralKeys": "off"
 			},
 			"suspicious": {
 				"noConsoleLog": "error",
@@ -18,6 +26,25 @@
 			"correctness": {
 				"noUnusedVariables": "error"
 			}
+		},
+		"ignore": ["src/__registry__/**/*"]
+	},
+	"overrides": [
+		{
+			"include": ["src/registry/extensions/**/*", "src/registry/toolbars/**/*"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noExplicitAny": "off"
+					},
+					"correctness": {
+						"noUnusedVariables": "off"
+					}
+				}
+			}
 		}
+	],
+	"formatter": {
+		"ignore": ["src/__registry__/**/*"]
 	}
 }

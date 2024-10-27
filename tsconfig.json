@@ -1,5 +1,8 @@
 {
+	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "ES5",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
@@ -18,7 +21,8 @@
 			}
 		],
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"contentlayer/generated": ["./.contentlayer/generated"]
 		}
 	},
 	"include": [
@@ -26,7 +30,7 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"src/app/docs/extensions/image/page.mdx"
+		".contentlayer/generated"
 	],
 	"exclude": ["node_modules"]
 }

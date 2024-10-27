@@ -1,0 +1,72 @@
+{
+  "name": "color-and-highlight",
+  "type": "registry:block",
+  "description": "",
+  "dependencies": [
+    "@tiptap/extension-text-style",
+    "@tiptap/extension-color",
+    "@tiptap/extension-highlight",
+    "@tiptap/core"
+  ],
+  "registryDependencies": [
+    "popover",
+    "tooltip",
+    "button",
+    "scroll-area",
+    "separator"
+  ],
+  "files": [
+    {
+      "path": "toolbars/color-and-highlight.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport { Button } from \"@/components/ui/button\";\nimport {\n\tPopover,\n\tPopoverContent,\n\tPopoverTrigger,\n} from \"@/components/ui/popover\";\nimport { ScrollArea } from \"@/components/ui/scroll-area\";\nimport { Separator } from \"@/components/ui/separator\";\nimport {\n\tTooltip,\n\tTooltipContent,\n\tTooltipTrigger,\n} from \"@/components/ui/tooltip\";\nimport { cn } from \"@/lib/utils\";\nimport { useToolbar } from \"@/components/toolbars/toolbar-provider\";\nimport type { Extension } from \"@tiptap/core\";\nimport type { ColorOptions } from \"@tiptap/extension-color\";\nimport type { HighlightOptions } from \"@tiptap/extension-highlight\";\nimport { Check, ChevronDown } from \"lucide-react\";\n\ntype TextStylingExtensions =\n\t| Extension<ColorOptions, any>\n\t| Extension<HighlightOptions, any>;\n\nconst TEXT_COLORS = [\n\t{ name: \"Default\", color: \"var(--text-default)\" },\n\t{ name: \"Gray\", color: \"var(--text-gray)\" },\n\t{ name: \"Brown\", color: \"var(--text-brown)\" },\n\t{ name: \"Orange\", color: \"var(--text-orange)\" },\n\t{ name: \"Yellow\", color: \"var(--text-yellow)\" },\n\t{ name: \"Green\", color: \"var(--text-green)\" },\n\t{ name: \"Blue\", color: \"var(--text-blue)\" },\n\t{ name: \"Purple\", color: \"var(--text-purple)\" },\n\t{ name: \"Pink\", color: \"var(--text-pink)\" },\n\t{ name: \"Red\", color: \"var(--text-red)\" },\n];\n\nconst HIGHLIGHT_COLORS = [\n\t{ name: \"Default\", color: \"var(--highlight-default)\" },\n\t{ name: \"Gray\", color: \"var(--highlight-gray)\" },\n\t{ name: \"Brown\", color: \"var(--highlight-brown)\" },\n\t{ name: \"Orange\", color: \"var(--highlight-orange)\" },\n\t{ name: \"Yellow\", color: \"var(--highlight-yellow)\" },\n\t{ name: \"Green\", color: \"var(--highlight-green)\" },\n\t{ name: \"Blue\", color: \"var(--highlight-blue)\" },\n\t{ name: \"Purple\", color: \"var(--highlight-purple)\" },\n\t{ name: \"Pink\", color: \"var(--highlight-pink)\" },\n\t{ name: \"Red\", color: \"var(--highlight-red)\" },\n];\n\ninterface ColorHighlightButtonProps {\n\tname: string;\n\tcolor: string;\n\tisActive: boolean;\n\tonClick: () => void;\n\tisHighlight?: boolean;\n}\n\nconst ColorHighlightButton = ({\n\tname,\n\tcolor,\n\tisActive,\n\tonClick,\n\tisHighlight,\n}: ColorHighlightButtonProps) => (\n\t<button\n\t\tonClick={onClick}\n\t\tclassName=\"flex w-full items-center justify-between rounded-sm px-2 py-1 text-sm hover:bg-gray-3\"\n\t\ttype=\"button\"\n\t>\n\t\t<div className=\"flex items-center space-x-2\">\n\t\t\t<div\n\t\t\t\tclassName=\"rounded-sm border px-1 py-px font-medium\"\n\t\t\t\tstyle={isHighlight ? { backgroundColor: color } : { color }}\n\t\t\t>\n\t\t\t\tA\n\t\t\t</div>\n\t\t\t<span>{name}</span>\n\t\t</div>\n\t\t{isActive && <Check className=\"h-4 w-4\" />}\n\t</button>\n);\n\nexport const ColorHighlightToolbar = () => {\n\tconst { editor } = useToolbar();\n\n\tconst currentColor = editor?.getAttributes(\"textStyle\").color;\n\tconst currentHighlight = editor?.getAttributes(\"highlight\").color;\n\n\tconst handleSetColor = (color: string) => {\n\t\teditor\n\t\t\t?.chain()\n\t\t\t.focus()\n\t\t\t.setColor(color === currentColor ? \"\" : color)\n\t\t\t.run();\n\t};\n\n\tconst handleSetHighlight = (color: string) => {\n\t\teditor\n\t\t\t?.chain()\n\t\t\t.focus()\n\t\t\t.setHighlight(color === currentHighlight ? { color: \"\" } : { color })\n\t\t\t.run();\n\t};\n\n\tconst isDisabled =\n\t\t!editor?.can().chain().setHighlight().run() ||\n\t\t!editor?.can().chain().setColor(\"\").run();\n\n\treturn (\n\t\t<Popover>\n\t\t\t<div className=\"relative h-full\">\n\t\t\t\t<Tooltip>\n\t\t\t\t\t<TooltipTrigger asChild>\n\t\t\t\t\t\t<PopoverTrigger disabled={isDisabled} asChild>\n\t\t\t\t\t\t\t<Button\n\t\t\t\t\t\t\t\tvariant=\"ghost\"\n\t\t\t\t\t\t\t\tsize=\"sm\"\n\t\t\t\t\t\t\t\tstyle={{\n\t\t\t\t\t\t\t\t\tcolor: currentColor,\n\t\t\t\t\t\t\t\t}}\n\t\t\t\t\t\t\t\tclassName={cn(\"h-8 w-14 p-0 font-normal\")}\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t<span className=\"text-md\">A</span>\n\t\t\t\t\t\t\t\t<ChevronDown className=\"ml-2 h-4 w-4\" />\n\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t</PopoverTrigger>\n\t\t\t\t\t</TooltipTrigger>\n\t\t\t\t\t<TooltipContent>Text Color & Highlight</TooltipContent>\n\t\t\t\t</Tooltip>\n\n\t\t\t\t<PopoverContent align=\"start\" className=\"w-56 p-1 dark:bg-gray-2\">\n\t\t\t\t\t<ScrollArea className=\"max-h-80 overflow-y-auto pr-2\">\n\t\t\t\t\t\t<div className=\"mb-2.5 mt-2 px-2 text-xs text-gray-11\">Color</div>\n\t\t\t\t\t\t{TEXT_COLORS.map(({ name, color }) => (\n\t\t\t\t\t\t\t<ColorHighlightButton\n\t\t\t\t\t\t\t\tkey={name}\n\t\t\t\t\t\t\t\tname={name}\n\t\t\t\t\t\t\t\tcolor={color}\n\t\t\t\t\t\t\t\tisActive={currentColor === color}\n\t\t\t\t\t\t\t\tonClick={() => handleSetColor(color)}\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t))}\n\n\t\t\t\t\t\t<Separator className=\"my-3\" />\n\n\t\t\t\t\t\t<div className=\"mb-2.5 w-full px-2 pr-3 text-xs text-gray-11\">\n\t\t\t\t\t\t\tBackground\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t{HIGHLIGHT_COLORS.map(({ name, color }) => (\n\t\t\t\t\t\t\t<ColorHighlightButton\n\t\t\t\t\t\t\t\tkey={name}\n\t\t\t\t\t\t\t\tname={name}\n\t\t\t\t\t\t\t\tcolor={color}\n\t\t\t\t\t\t\t\tisActive={currentHighlight === color}\n\t\t\t\t\t\t\t\tonClick={() => handleSetHighlight(color)}\n\t\t\t\t\t\t\t\tisHighlight\n\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t))}\n\t\t\t\t\t</ScrollArea>\n\t\t\t\t</PopoverContent>\n\t\t\t</div>\n\t\t</Popover>\n\t);\n};\n",
+      "target": "components/toolbars/color-and-highlight.tsx"
+    }
+  ],
+  "cssVars": {
+    "light": {
+      "--text-default": "#000000",
+      "--text-gray": "#6B7280",
+      "--text-brown": "#92400E",
+      "--text-orange": "#EA580C",
+      "--text-yellow": "#CA8A04",
+      "--text-green": "#16A34A",
+      "--text-blue": "#2563EB",
+      "--text-purple": "#9333EA",
+      "--text-pink": "#DB2777",
+      "--text-red": "#DC2626",
+      "--highlight-default": "#FFFFFF",
+      "--highlight-gray": "#F3F4F6",
+      "--highlight-brown": "#FEF3C7",
+      "--highlight-orange": "#FFEDD5",
+      "--highlight-yellow": "#FEF9C3",
+      "--highlight-green": "#DCFCE7",
+      "--highlight-blue": "#DBEAFE",
+      "--highlight-purple": "#F3E8FF",
+      "--highlight-pink": "#FCE7F3",
+      "--highlight-red": "#FEE2E2"
+    },
+    "dark": {
+      "--text-default": "#FFFFFF",
+      "--text-gray": "#9CA3AF",
+      "--text-brown": "#D97706",
+      "--text-orange": "#F97316",
+      "--text-yellow": "#EAB308",
+      "--text-green": "#22C55E",
+      "--text-blue": "#3B82F6",
+      "--text-purple": "#A855F7",
+      "--text-pink": "#EC4899",
+      "--text-red": "#EF4444",
+      "--highlight-default": "#1F2937",
+      "--highlight-gray": "#374151",
+      "--highlight-brown": "#78350F",
+      "--highlight-orange": "#9A3412",
+      "--highlight-yellow": "#854D0E",
+      "--highlight-green": "#166534",
+      "--highlight-blue": "#1E40AF",
+      "--highlight-purple": "#6B21A8",
+      "--highlight-pink": "#9D174D",
+      "--highlight-red": "#991B1B"
+    }
+  }
+}
