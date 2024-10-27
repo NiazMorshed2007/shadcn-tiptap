@@ -168,7 +168,6 @@ function TiptapImage(props: NodeViewProps) {
 		// Touch events
 		window.addEventListener("touchmove", handleTouchMove);
 		window.addEventListener("touchend", handleTouchEnd);
-
 		return () => {
 			window.removeEventListener("mousemove", resize);
 			window.removeEventListener("mouseup", endResize);
