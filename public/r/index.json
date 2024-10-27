@@ -163,5 +163,32 @@
         "target": "components/toolbars/image-placeholder-toolbar.tsx"
       }
     ]
+  },
+  {
+    "name": "toolbar-provider",
+    "type": "registry:block",
+    "description": "",
+    "dependencies": [
+      "@tiptap/react"
+    ],
+    "files": [
+      {
+        "path": "toolbars/toolbar-provider.tsx",
+        "type": "registry:component",
+        "target": "components/toolbars/toolbar-provider.tsx"
+      }
+    ]
+  },
+  {
+    "name": "search-and-replace-toolbar",
+    "type": "registry:block",
+    "description": "A toolbar for searching and replacing text in the editor.",
+    "files": [
+      {
+        "path": "toolbars/search-and-replace.tsx",
+        "type": "registry:component",
+        "target": "components/toolbars/search-and-replace.tsx"
+      }
+    ]
   }
 ]

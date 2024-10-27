@@ -101,6 +101,18 @@ export const Index: Record<string, any> = {
     subcategory: "",
     chunks: []
   },
+  "toolbar-provider": {
+    name: "toolbar-provider",
+    description: "",
+    type: "registry:block",
+    registryDependencies: undefined,
+    files: ["src/registry/toolbars/toolbar-provider.tsx"],
+    component: React.lazy(() => import("@/registry/toolbars/toolbar-provider.tsx")),
+    source: "src/__registry__/toolbars/toolbar-provider.tsx",
+    category: "",
+    subcategory: "",
+    chunks: []
+  },
   "search-and-replace-toolbar-example": {
     name: "search-and-replace-toolbar-example",
     description: "",

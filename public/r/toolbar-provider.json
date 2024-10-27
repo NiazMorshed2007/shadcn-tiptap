@@ -1,0 +1,16 @@
+{
+  "name": "toolbar-provider",
+  "type": "registry:block",
+  "description": "",
+  "dependencies": [
+    "@tiptap/react"
+  ],
+  "files": [
+    {
+      "path": "toolbars/toolbar-provider.tsx",
+      "type": "registry:component",
+      "content": "\"use client\";\n\nimport type { Editor } from \"@tiptap/react\";\nimport React from \"react\";\n\nexport interface ToolbarContextProps {\n\teditor: Editor;\n}\n\nexport const ToolbarContext = React.createContext<ToolbarContextProps | null>(\n\tnull,\n);\n\ninterface ToolbarProviderProps {\n\teditor: Editor;\n\tchildren: React.ReactNode;\n}\n\nexport const ToolbarProvider = ({ editor, children }: ToolbarProviderProps) => {\n\treturn (\n\t\t<ToolbarContext.Provider value={{ editor }}>\n\t\t\t{children}\n\t\t</ToolbarContext.Provider>\n\t);\n};\n\nexport const useToolbar = () => {\n\tconst context = React.useContext(ToolbarContext);\n\n\tif (!context) {\n\t\tthrow new Error(\"useToolbar must be used within a ToolbarProvider\");\n\t}\n\n\treturn context;\n};\n",
+      "target": "components/toolbars/toolbar-provider.tsx"
+    }
+  ]
+}

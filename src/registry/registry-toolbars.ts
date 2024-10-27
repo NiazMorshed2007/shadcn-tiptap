@@ -3,7 +3,7 @@ import type { Registry } from "./schema";
 export const toolbars: Registry = [
 	{
 		name: "toolbar-provider",
-		type: "registry:component",
+		type: "registry:block",
 		description: "A toolbar provider that serves editor to its children.",
 		dependencies: ["@tiptap/react"],
 		files: [
@@ -16,7 +16,7 @@ export const toolbars: Registry = [
 	},
 	{
 		name: "search-and-replace-toolbar",
-		type: "registry:component",
+		type: "registry:block",
 		description: "A toolbar for searching and replacing text in the editor.",
 		files: [
 			{

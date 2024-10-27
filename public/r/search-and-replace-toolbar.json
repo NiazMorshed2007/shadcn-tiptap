@@ -1,0 +1,6 @@
+{
+  "name": "search-and-replace-toolbar",
+  "type": "registry:block",
+  "description": "A toolbar for searching and replacing text in the editor.",
+  "files": []
+}
