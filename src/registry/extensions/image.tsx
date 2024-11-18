@@ -181,7 +181,7 @@ function TiptapImage(props: NodeViewProps) {
 			ref={nodeRef}
 			className={cn(
 				"relative flex flex-col rounded-md border-2 border-transparent",
-				selected ? "border-blue-300" : "",
+				selected && editor?.isEditable ? "border-blue-300" : "",
 				node.attrs.align === "left" && "left-0 -translate-x-0",
 				node.attrs.align === "center" && "left-1/2 -translate-x-1/2",
 				node.attrs.align === "right" && "left-full -translate-x-full",
